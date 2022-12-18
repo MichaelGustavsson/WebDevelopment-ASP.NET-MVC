@@ -1,0 +1,22 @@
+@model IList<westcoast_cars.web.Models.Vehicle>
+
+@{
+    ViewBag.PageTitle = "Våra bilar";
+}
+
+<article class="page">
+    <h1 class="page-title">Våra bilar i lager</h1>
+    <hr>
+    <div>Lista på bilar</div>
+
+    <section>
+        @foreach (var vehicle in Model)
+        {
+            <div>
+                <a asp-action="details" asp-route-vehicleId=@vehicle.VehicleId>@vehicle.Make - @vehicle.Model -
+                    @vehicle.ModelYear</a>
+            </div>
+        }
+    </section>
+
+</article>

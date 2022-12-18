@@ -1802,6 +1802,19 @@
         "build": {
           "build/netcoreapp2.1/xunit.runner.visualstudio.props": {}
         }
+      },
+      "westcoast-cars.web/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/westcoast-cars.web.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/westcoast-cars.web.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
       }
     }
   },
@@ -6098,12 +6111,18 @@
         "xunit.runner.visualstudio.2.4.3.nupkg.sha512",
         "xunit.runner.visualstudio.nuspec"
       ]
+    },
+    "westcoast-cars.web/1.0.0": {
+      "type": "project",
+      "path": "../westcoast-cars.web/westcoast-cars.web.csproj",
+      "msbuildProject": "../westcoast-cars.web/westcoast-cars.web.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net6.0": [
       "Microsoft.NET.Test.Sdk >= 17.1.0",
       "coverlet.collector >= 3.1.2",
+      "westcoast-cars.web >= 1.0.0",
       "xunit >= 2.4.1",
       "xunit.runner.visualstudio >= 2.4.3"
     ]
@@ -6133,7 +6152,11 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "/Users/michaelgustavsson/Documents/Development/Courses/SoftTech/ASP.NET Web utveckling/GitHub/MVC/final/westcoast-cars.web/westcoast-cars.web.csproj": {
+              "projectPath": "/Users/michaelgustavsson/Documents/Development/Courses/SoftTech/ASP.NET Web utveckling/GitHub/MVC/final/westcoast-cars.web/westcoast-cars.web.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

@@ -4,8 +4,12 @@ namespace westcoast_cars.web.Controllers;
 
 public class HomeController : Controller
 {
+
+    // Action method...
     public IActionResult Index()
     {
-        return View();
+        ViewBag.Message = "Vi har bilen för dig och din familj!!!";
+        // Returnerar ett ViewResult...
+        return View("Index");
     }
 }

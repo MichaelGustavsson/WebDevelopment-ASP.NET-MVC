@@ -25,3 +25,6 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
+
+// http://localhost:7141
+// http://localhost:7141/Home/details
