@@ -1,0 +1,13 @@
+@model IList<westcoast_cars.web.Models.Vehicle>
+
+<h1 class="page-title">Här är alla våra bilar!</h1>
+
+<section>
+    <h4>Alla aktuella bilar</h4>
+    @foreach (var vehicle in Model)
+    {
+        <div>
+            <span>@vehicle.Make - @vehicle.Model</span>
+        </div>
+    }
+</section>

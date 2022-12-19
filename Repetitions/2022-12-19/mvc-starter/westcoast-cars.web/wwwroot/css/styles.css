@@ -1,0 +1,16 @@
+/* reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #8c8b8b;
+  color: #f4f4f4;
+}
+
+.page-title {
+  text-align: center;
+  font-weight: 900;
+}

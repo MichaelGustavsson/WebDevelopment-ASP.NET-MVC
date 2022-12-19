@@ -1,0 +1,11 @@
+@model westcoast_cars.web.Models.Vehicle
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1 class="page-title">Information om vald bil</h1>
+
+<h2>Vehicle Identity: @Model.VehicleId</h2>
+<h4>Tillverkare: @Model.Make</h4>
+<h4>Modell: @Model.Model</h4>
