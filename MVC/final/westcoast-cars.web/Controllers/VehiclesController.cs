@@ -3,6 +3,7 @@ using westcoast_cars.web.Models;
 
 namespace westcoast_cars.web.Controllers
 {
+    //http://localhost:3000/vehicles
     [Route("vehicles")]
     public class VehiclesController : Controller
     {
@@ -31,7 +32,6 @@ namespace westcoast_cars.web.Controllers
                 ModelYear = 2022,
                 Mileage = 100
             };
-
 
             return View("Details", foundVehicle);
         }
