@@ -1,0 +1,8 @@
+@model westcoast_cars.Models.VehicleModel
+
+<form asp-action="create" asp-controller="vehicles" method="post">
+    <input placeholder="RegistrationNumber" asp-for="RegistrationNumber" /><br>
+    <input placeholder="Manufacturer" asp-for="Manufacturer" /><br>
+    <input placeholder="Model" asp-for="Model" /><br>
+    <input type="submit" value="Save" />
+</form>

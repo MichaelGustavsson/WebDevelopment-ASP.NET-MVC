@@ -10,15 +10,7 @@
 
 <body>
     <header>
-        <nav>
-            <h1>Westcoast Cars</h1>
-            <ul>
-                <li>
-                    <a asp-action="Index" asp-controller="Home">Start</a><br>
-                    <a asp-action="Index" asp-controller="Vehicles">Bilar i lager</a>
-                </li>
-            </ul>
-        </nav>
+        @await Html.PartialAsync("_Navbar")
     </header>
     <main>
         @RenderBody()

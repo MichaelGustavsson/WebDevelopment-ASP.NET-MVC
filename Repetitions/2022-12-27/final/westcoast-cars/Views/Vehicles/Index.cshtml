@@ -1,6 +1,14 @@
+@model IList<westcoast_cars.Models.VehicleModel>
 <h1>Bilar i lager</h1>
 
-@section alert{
-<h4>Hej på dig!</h4>
-<a asp-action="details" asp-controller="vehicles" asp-route-vehicleId=1>Detaljer</a>
+<div>
+    <a asp-action="Create" asp-controller="Vehicles">Create new vehicle</a>
+
+</div>
+<br>
+@foreach (var vehicle in Model)
+{
+    <a asp-action="Details" asp-controller="Vehicles" asp-route-vehicleId=@vehicle.Id>
+    @vehicle.Manufacturer - @vehicle.Model
+</a><br>
 }
