@@ -4,13 +4,28 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    @RenderSection("styles", false)
     <title>@ViewBag.PageTitle - Westcoast Cars</title>
 </head>
 
 <body>
+    <header>
+        <nav>
+            <h1>Westcoast Cars</h1>
+            <ul>
+                <li>
+                    <a asp-action="Index" asp-controller="Home">Start</a><br>
+                    <a asp-action="Index" asp-controller="Vehicles">Bilar i lager</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
     <main>
         @RenderBody()
+        @RenderSection("alert", false)
     </main>
+
+    @RenderSection("script", false)
 </body>
 
 </html>
