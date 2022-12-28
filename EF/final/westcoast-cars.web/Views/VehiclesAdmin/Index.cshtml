@@ -26,9 +26,9 @@
                 @foreach (var vehicle in Model)
                 {
                     <tr>
-                        <td class="edit-icon">
-                            <a asp-action="Edit" asp-controller="VehiclesAdmin" asp-route-vehicleId=@vehicle.VehicleId><i
-                                class="fa-regular fa-pen"></i></a>
+                        <td>
+                            <a class="edit-icon" asp-action="Edit" asp-controller="VehiclesAdmin"
+                            asp-route-vehicleId=@vehicle.VehicleId><i class="fa-regular fa-pen"></i></a>
                         </td>
                         <td>@vehicle.RegistrationNumber</td>
                         <td>@vehicle.Manufacturer</td>
