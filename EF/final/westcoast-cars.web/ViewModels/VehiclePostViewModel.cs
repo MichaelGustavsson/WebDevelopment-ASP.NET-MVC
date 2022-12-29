@@ -19,5 +19,6 @@ public class VehiclePostViewModel
     public string ModelYear { get; set; } = "";
 
     [Required(ErrorMessage = "Antal körda km är obligatoriskt")]
-    public int Mileage { get; set; }
+    [Range(1, int.MaxValue, ErrorMessage = "Antal körda km är obligatoriskt och måste vara större än 0.")]
+    public int? Mileage { get; set; }
 }

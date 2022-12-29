@@ -47,16 +47,8 @@ public class VehiclesAdminController : Controller
     {
         try
         {
-            if (!ModelState.IsValid)
-            {
-                var error = new ErrorModel
-                {
-                    ErrorTitle = "Ett fel har inträffat när vi skulle spara bilen",
-                    ErrorMessage = "Det gick inte så bra!"
-                };
+            if (!ModelState.IsValid) return View("Create", vehicle);
 
-                return View("_Error", error);
-            }
 
             var exists = await _context.Vehicles.SingleOrDefaultAsync(
             c => c.RegistrationNumber.Trim().ToLower() == vehicle.RegistrationNumber.Trim().ToLower());
@@ -78,7 +70,7 @@ public class VehiclesAdminController : Controller
                 Manufacturer = vehicle.Manufacturer,
                 Model = vehicle.Model,
                 ModelYear = vehicle.ModelYear,
-                Mileage = vehicle.Mileage
+                Mileage = (int)vehicle.Mileage!
             };
 
             await _context.Vehicles.AddAsync(vehicleToAdd);
