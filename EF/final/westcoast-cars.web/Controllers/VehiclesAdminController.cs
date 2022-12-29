@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using westcoast_cars.web.Data;
+using westcoast_cars.web.Interfaces;
 using westcoast_cars.web.Models;
 using westcoast_cars.web.ViewModels;
 
@@ -9,18 +10,30 @@ namespace westcoast_cars.web.Controllers;
 [Route("vehicles/admin")]
 public class VehiclesAdminController : Controller
 {
-    private readonly WestcoastCarsContext _context;
-    public VehiclesAdminController(WestcoastCarsContext context)
+    private readonly IVehicleRepository _repo;
+
+    public VehiclesAdminController(IVehicleRepository repo)
     {
-        _context = context;
+        _repo = repo;
     }
 
     public async Task<IActionResult> Index()
     {
         try
         {
-            var vehicles = await _context.Vehicles.ToListAsync();
-            return View("Index", vehicles);
+            var vehicles = await _repo.ListAllAsync();
+
+            var model = vehicles.Select(v => new VehicleListViewModel
+            {
+                VehicleId = v.VehicleId,
+                RegistrationNumber = v.RegistrationNumber,
+                Manufacturer = v.Manufacturer,
+                Model = v.Model,
+                ModelYear = v.ModelYear,
+                Mileage = v.Mileage
+            }).ToList();
+
+            return View("Index", model);
         }
         catch (Exception ex)
         {
@@ -49,9 +62,7 @@ public class VehiclesAdminController : Controller
         {
             if (!ModelState.IsValid) return View("Create", vehicle);
 
-
-            var exists = await _context.Vehicles.SingleOrDefaultAsync(
-            c => c.RegistrationNumber.Trim().ToLower() == vehicle.RegistrationNumber.Trim().ToLower());
+            var exists = await _repo.FindByRegistrationNumberAsync(vehicle.RegistrationNumber);
 
             if (exists is not null)
             {
@@ -73,10 +84,21 @@ public class VehiclesAdminController : Controller
                 Mileage = (int)vehicle.Mileage!
             };
 
-            await _context.Vehicles.AddAsync(vehicleToAdd);
-            await _context.SaveChangesAsync();
+            if (await _repo.AddAsync(vehicleToAdd))
+            {
+                if (await _repo.SaveAsync())
+                {
+                    return RedirectToAction(nameof(Index));
+                }
+            }
 
-            return RedirectToAction(nameof(Index));
+            var saveError = new ErrorModel
+            {
+                ErrorTitle = "Ett fel har inträffat när bilen skulle sparas!",
+                ErrorMessage = $"Det inträffade ett fel när bilen med registreringsnummer {vehicle.RegistrationNumber} skulle sparas"
+            };
+
+            return View("_Error", saveError);
         }
         catch (Exception ex)
         {
@@ -95,17 +117,29 @@ public class VehiclesAdminController : Controller
     {
         try
         {
-            var vehicle = await _context.Vehicles.SingleOrDefaultAsync(c => c.VehicleId == vehicleId);
-
-            if (vehicle is not null) return View("Edit", vehicle);
-
-            var error = new ErrorModel
+            var result = await _repo.FindByIdAsync(vehicleId);
+            // if (vehicle is not null) return View("Edit", vehicle);
+            if (result is null)
             {
-                ErrorTitle = "Ett fel har inträffat när vi skulle hämta en bil för redigering",
-                ErrorMessage = $"Vi hittar ingen bil med id {vehicleId}"
-            };
+                var error = new ErrorModel
+                {
+                    ErrorTitle = "Ett fel har inträffat när vi skulle hämta en bil för redigering",
+                    ErrorMessage = $"Vi hittar ingen bil med id {vehicleId}"
+                };
 
-            return View("_Error", error);
+                return View("_Error", error);
+            }
+
+            var model = new VehicleUpdateViewModel
+            {
+                VehicleId = result.VehicleId,
+                RegistrationNumber = result.RegistrationNumber,
+                Manufacturer = result.Manufacturer,
+                Model = result.Model,
+                ModelYear = result.ModelYear,
+                Mileage = result.Mileage
+            };
+            return View("Edit", model);
         }
         catch (Exception ex)
         {
@@ -120,11 +154,13 @@ public class VehiclesAdminController : Controller
     }
 
     [HttpPost("edit/{vehicleId}")]
-    public async Task<IActionResult> Edit(int vehicleId, Vehicle vehicle)
+    public async Task<IActionResult> Edit(int vehicleId, VehicleUpdateViewModel vehicle)
     {
         try
         {
-            var vehicleToUpdate = _context.Vehicles.SingleOrDefault(c => c.VehicleId == vehicleId);
+            if (!ModelState.IsValid) return View("Edit", vehicle);
+
+            var vehicleToUpdate = await _repo.FindByIdAsync(vehicleId);
 
             if (vehicleToUpdate is null) return RedirectToAction(nameof(Index));
 
@@ -132,12 +168,23 @@ public class VehiclesAdminController : Controller
             vehicleToUpdate.Manufacturer = vehicle.Manufacturer;
             vehicleToUpdate.Model = vehicle.Model;
             vehicleToUpdate.ModelYear = vehicle.ModelYear;
-            vehicleToUpdate.Mileage = vehicle.Mileage;
+            vehicleToUpdate.Mileage = (int)vehicle.Mileage!;
 
-            _context.Vehicles.Update(vehicleToUpdate);
-            await _context.SaveChangesAsync();
+            if (await _repo.UpdateAsync(vehicleToUpdate))
+            {
+                if (await _repo.SaveAsync())
+                {
+                    return RedirectToAction(nameof(Index));
+                }
+            }
 
-            return RedirectToAction(nameof(Index));
+            var error = new ErrorModel
+            {
+                ErrorTitle = "Ett fel har inträffat när vi skulle spara bilen",
+                ErrorMessage = $"Ett fel inträffade när vi skulle uppdatera bilen med registreringsnummer {vehicleToUpdate.RegistrationNumber}"
+            };
+
+            return View("_Error", error);
         }
         catch (Exception ex)
         {
@@ -156,14 +203,25 @@ public class VehiclesAdminController : Controller
     {
         try
         {
-            var vehicleToDelete = await _context.Vehicles.SingleOrDefaultAsync(c => c.VehicleId == vehicleId);
+            var vehicleToDelete = await _repo.FindByIdAsync(vehicleId);
 
             if (vehicleToDelete is null) return RedirectToAction(nameof(Index));
 
-            _context.Vehicles.Remove(vehicleToDelete);
-            await _context.SaveChangesAsync();
+            if (await _repo.DeleteAsync(vehicleToDelete))
+            {
+                if (await _repo.SaveAsync())
+                {
+                    return RedirectToAction(nameof(Index));
+                }
+            }
 
-            return RedirectToAction(nameof(Index));
+            var error = new ErrorModel
+            {
+                ErrorTitle = "Ett fel har inträffat när bilen skulle raderas",
+                ErrorMessage = $"Ett fel inträffade när bilen med registeringsnummer {vehicleToDelete.RegistrationNumber} skulle tas bort"
+            };
+
+            return View("_Error", error);
         }
         catch (Exception ex)
         {

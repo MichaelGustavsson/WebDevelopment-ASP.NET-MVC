@@ -2,9 +2,10 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace westcoast_cars.web.ViewModels;
-
-public class VehiclePostViewModel
+public class VehicleUpdateViewModel
 {
+    [Required(ErrorMessage = "Fordons id är obligatoriskt")]
+    public int VehicleId { get; set; }
     public string VinNumber { get; set; } = "";
 
     [Required(ErrorMessage = "Registreringsnummer är obligatoriskt")]

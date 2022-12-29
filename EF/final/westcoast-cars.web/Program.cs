@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using westcoast_cars.web.Data;
+using westcoast_cars.web.Interfaces;
+using westcoast_cars.web.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +10,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<WestcoastCarsContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("Sqlite"))
 );
+
+// Add dependency injection...
+builder.Services.AddScoped<IVehicleRepository, VehicleRepository>();
 
 builder.Services.AddControllersWithViews();
 

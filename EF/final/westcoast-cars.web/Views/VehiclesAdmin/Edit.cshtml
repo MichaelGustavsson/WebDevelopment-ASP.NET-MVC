@@ -1,4 +1,4 @@
-@model westcoast_cars.web.Models.Vehicle
+@model westcoast_cars.web.ViewModels.VehicleUpdateViewModel
 
 @{
     Layout = "_LayoutAdmin";
@@ -9,24 +9,29 @@
     <form class="shadow" asp-action="edit" asp-controller="VehiclesAdmin" asp-route-vehicleId=@Model.VehicleId
         method="post">
         <div class="form-control">
-            <label for="">Registreringsnummer</label>
+            <label asp-for="RegistrationNumber"></label>
             <input asp-for="RegistrationNumber" />
+            <span class="error" asp-validation-for="RegistrationNumber"></span>
         </div>
         <div class="form-control">
-            <label for="">Tillverkare</label>
+            <label asp-for="Manufacturer"></label>
             <input asp-for="Manufacturer" />
+            <span class="error" asp-validation-for="Manufacturer"></span>
         </div>
         <div class="form-control">
-            <label for="">Modell</label>
+            <label asp-for="Model"></label>
             <input asp-for="Model" />
+            <span class="error" asp-validation-for="Model"></span>
         </div>
         <div class="form-control">
-            <label for="">Modell År</label>
+            <label asp-for="ModelYear"></label>
             <input asp-for="ModelYear" />
+            <span class="error" asp-validation-for="ModelYear"></span>
         </div>
         <div class="form-control">
-            <label for="">Antal Km</label>
+            <label asp-for="Mileage"></label>
             <input asp-for="Mileage" />
+            <span class="error" asp-validation-for="Mileage"></span>
         </div>
         <div class="form-control">
             <div class="buttons-container">
