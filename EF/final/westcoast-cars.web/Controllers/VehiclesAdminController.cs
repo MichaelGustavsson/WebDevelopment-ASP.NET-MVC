@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using westcoast_cars.web.Data;
 using westcoast_cars.web.Models;
+using westcoast_cars.web.ViewModels;
 
 namespace westcoast_cars.web.Controllers;
 
@@ -36,16 +37,27 @@ public class VehiclesAdminController : Controller
     [HttpGet("create")]
     public IActionResult Create()
     {
-        var vehicle = new Vehicle();
+        var vehicle = new VehiclePostViewModel();
         return View("Create", vehicle);
 
     }
 
     [HttpPost("create")]
-    public async Task<IActionResult> Create(Vehicle vehicle)
+    public async Task<IActionResult> Create(VehiclePostViewModel vehicle)
     {
         try
         {
+            if (!ModelState.IsValid)
+            {
+                var error = new ErrorModel
+                {
+                    ErrorTitle = "Ett fel har inträffat när vi skulle spara bilen",
+                    ErrorMessage = "Det gick inte så bra!"
+                };
+
+                return View("_Error", error);
+            }
+
             var exists = await _context.Vehicles.SingleOrDefaultAsync(
             c => c.RegistrationNumber.Trim().ToLower() == vehicle.RegistrationNumber.Trim().ToLower());
 
@@ -60,7 +72,16 @@ public class VehiclesAdminController : Controller
                 return View("_Error", error);
             }
 
-            await _context.Vehicles.AddAsync(vehicle);
+            var vehicleToAdd = new Vehicle
+            {
+                RegistrationNumber = vehicle.RegistrationNumber,
+                Manufacturer = vehicle.Manufacturer,
+                Model = vehicle.Model,
+                ModelYear = vehicle.ModelYear,
+                Mileage = vehicle.Mileage
+            };
+
+            await _context.Vehicles.AddAsync(vehicleToAdd);
             await _context.SaveChangesAsync();
 
             return RedirectToAction(nameof(Index));
