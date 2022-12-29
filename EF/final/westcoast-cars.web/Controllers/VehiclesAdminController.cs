@@ -46,7 +46,7 @@ public class VehiclesAdminController : Controller
     {
         try
         {
-            var exists = _context.Vehicles.SingleOrDefaultAsync(
+            var exists = await _context.Vehicles.SingleOrDefaultAsync(
             c => c.RegistrationNumber.Trim().ToLower() == vehicle.RegistrationNumber.Trim().ToLower());
 
             if (exists is not null)
