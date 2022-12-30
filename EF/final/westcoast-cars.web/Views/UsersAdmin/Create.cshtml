@@ -1,0 +1,44 @@
+@model westcoast_cars.web.ViewModels.Users.UserPostViewModel
+
+@{
+    Layout = "_LayoutAdmin";
+}
+
+<section class="page">
+    <h1 class="page-title">Lägg till användare</h1>
+    <form class="shadow" asp-action="create" asp-controller="UsersAdmin" method="post">
+        <div class="form-control">
+            <label asp-for="UserName"></label>
+            <input asp-for="UserName" />
+            <span class="error" asp-validation-for="UserName"></span>
+        </div>
+        <div class="form-control">
+            <label asp-for="FirstName"></label>
+            <input asp-for="FirstName" />
+            <span class="error" asp-validation-for="FirstName"></span>
+        </div>
+        <div class="form-control">
+            <label asp-for="LastName"></label>
+            <input asp-for="LastName" />
+            <span class="error" asp-validation-for="LastName"></span>
+        </div>
+        <div class="form-control">
+            <label asp-for="Email"></label>
+            <input asp-for="Email" />
+            <span class="error" asp-validation-for="Email"></span>
+        </div>
+        <div class="form-control">
+            <label asp-for="Password"></label>
+            <input asp-for="Password" />
+            <span class="error" asp-validation-for="Password"></span>
+        </div>
+        <div class="form-control">
+            <div class="buttons-container">
+                <button type="Submit" class="btn btn-primary"><i class="fa-sharp fa-solid fa-floppy-disk"></i>
+                    Spara</button>
+                <a asp-action="index" asp-controller="UsersAdmin" class="btn btn-warning"><i
+                        class="fa-solid fa-arrow-left"></i> Avbryt</a>
+            </div>
+        </div>
+    </form>
+</section>

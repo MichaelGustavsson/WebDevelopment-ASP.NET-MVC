@@ -13,6 +13,7 @@ builder.Services.AddDbContext<WestcoastCarsContext>(options =>
 
 // Add dependency injection...
 builder.Services.AddScoped<IVehicleRepository, VehicleRepository>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
 
 builder.Services.AddControllersWithViews();
 
