@@ -10,20 +10,18 @@ namespace westcoast_cars.web.Controllers;
 [Route("vehicles/admin")]
 public class VehiclesAdminController : Controller
 {
-    private readonly IVehicleRepository _repo;
-    public IRepository<Vehicle> _genericRepo { get; }
+    private readonly IUnitOfWork _unitOfWork;
 
-    public VehiclesAdminController(IRepository<Vehicle> genericRepo, IVehicleRepository repo)
+    public VehiclesAdminController(IUnitOfWork unitOfWork)
     {
-        _genericRepo = genericRepo;
-        _repo = repo;
+        _unitOfWork = unitOfWork;
     }
 
     public async Task<IActionResult> Index()
     {
         try
         {
-            var vehicles = await _genericRepo.ListAllAsync();
+            var vehicles = await _unitOfWork.VehicleRepository.ListAllAsync();
 
             var model = vehicles.Select(v => new VehicleListViewModel
             {
@@ -64,7 +62,7 @@ public class VehiclesAdminController : Controller
         {
             if (!ModelState.IsValid) return View("Create", vehicle);
 
-            var exists = await _repo.FindByRegistrationNumberAsync(vehicle.RegistrationNumber);
+            var exists = await _unitOfWork.VehicleRepository.FindByRegistrationNumberAsync(vehicle.RegistrationNumber);
 
             if (exists is not null)
             {
@@ -86,9 +84,9 @@ public class VehiclesAdminController : Controller
                 Mileage = (int)vehicle.Mileage!
             };
 
-            if (await _genericRepo.AddAsync(vehicleToAdd))
+            if (await _unitOfWork.VehicleRepository.AddAsync(vehicleToAdd))
             {
-                if (await _genericRepo.SaveAsync())
+                if (await _unitOfWork.Complete())
                 {
                     return RedirectToAction(nameof(Index));
                 }
@@ -119,7 +117,7 @@ public class VehiclesAdminController : Controller
     {
         try
         {
-            var result = await _genericRepo.FindByIdAsync(vehicleId);
+            var result = await _unitOfWork.VehicleRepository.FindByIdAsync(vehicleId);
             // if (vehicle is not null) return View("Edit", vehicle);
             if (result is null)
             {
@@ -162,7 +160,7 @@ public class VehiclesAdminController : Controller
         {
             if (!ModelState.IsValid) return View("Edit", vehicle);
 
-            var vehicleToUpdate = await _genericRepo.FindByIdAsync(vehicleId);
+            var vehicleToUpdate = await _unitOfWork.VehicleRepository.FindByIdAsync(vehicleId);
 
             if (vehicleToUpdate is null) return RedirectToAction(nameof(Index));
 
@@ -172,9 +170,9 @@ public class VehiclesAdminController : Controller
             vehicleToUpdate.ModelYear = vehicle.ModelYear;
             vehicleToUpdate.Mileage = (int)vehicle.Mileage!;
 
-            if (await _genericRepo.UpdateAsync(vehicleToUpdate))
+            if (await _unitOfWork.VehicleRepository.UpdateAsync(vehicleToUpdate))
             {
-                if (await _genericRepo.SaveAsync())
+                if (await _unitOfWork.Complete())
                 {
                     return RedirectToAction(nameof(Index));
                 }
@@ -205,13 +203,13 @@ public class VehiclesAdminController : Controller
     {
         try
         {
-            var vehicleToDelete = await _genericRepo.FindByIdAsync(vehicleId);
+            var vehicleToDelete = await _unitOfWork.VehicleRepository.FindByIdAsync(vehicleId);
 
             if (vehicleToDelete is null) return RedirectToAction(nameof(Index));
 
-            if (await _genericRepo.DeleteAsync(vehicleToDelete))
+            if (await _unitOfWork.VehicleRepository.DeleteAsync(vehicleToDelete))
             {
-                if (await _genericRepo.SaveAsync())
+                if (await _unitOfWork.Complete())
                 {
                     return RedirectToAction(nameof(Index));
                 }
