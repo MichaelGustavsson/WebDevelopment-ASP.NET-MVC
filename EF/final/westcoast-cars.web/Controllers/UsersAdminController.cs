@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace westcoast_cars.web.Controllers;
 
-[Route("users")]
+[Route("users/admin")]
 public class UsersAdminController : Controller
 {
     public IActionResult Index()
