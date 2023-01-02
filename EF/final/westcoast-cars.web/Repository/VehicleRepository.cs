@@ -7,7 +7,6 @@ namespace westcoast_cars.web.Repository;
 
 public class VehicleRepository : Repository<Vehicle>, IVehicleRepository
 {
-    // private readonly WestcoastCarsContext _context;
     public VehicleRepository(WestcoastCarsContext context) : base(context) { }
 
     public async Task<Vehicle?> FindByRegistrationNumberAsync(string regNo)

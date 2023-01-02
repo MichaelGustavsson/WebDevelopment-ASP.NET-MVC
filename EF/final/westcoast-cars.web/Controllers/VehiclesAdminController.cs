@@ -1,6 +1,4 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using westcoast_cars.web.Data;
 using westcoast_cars.web.Interfaces;
 using westcoast_cars.web.Models;
 using westcoast_cars.web.ViewModels;

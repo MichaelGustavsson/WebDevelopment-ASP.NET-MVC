@@ -1,0 +1,11 @@
+@model westcoast_cars.web.Models.ErrorModel
+
+@{
+    Layout = "_LayoutAdmin";
+}
+
+<section class="page">
+    <p class="error-icon"><i class="fa-regular fa-biohazard"></i></p>
+    <h1 class="error-page-title">@Model.ErrorTitle</h1>
+    <p class="text-secondary">@Model.ErrorMessage</p>
+</section>

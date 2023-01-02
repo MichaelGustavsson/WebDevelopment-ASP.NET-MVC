@@ -62,4 +62,16 @@ public class Repository<T> : IRepository<T> where T : class
             return Task.FromResult(false);
         }
     }
+    public Task<string> TestAsync(T entity)
+    {
+        try
+        {
+            _entity.Update(entity);
+            return Task.FromResult("Det gick bra");
+        }
+        catch
+        {
+            return Task.FromResult("Det gick inte så bra");
+        }
+    }
 }

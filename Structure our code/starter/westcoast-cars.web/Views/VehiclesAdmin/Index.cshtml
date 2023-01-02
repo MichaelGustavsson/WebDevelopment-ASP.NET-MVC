@@ -1,0 +1,56 @@
+@model IList<westcoast_cars.web.Models.Vehicle>
+
+@{
+    Layout = "_LayoutAdmin";
+}
+
+<section class="page">
+    <h1>Aktuella bilar lager</h1>
+    <div class="table-container">
+        <div>
+            <a class="btn btn-primary" asp-action="create" asp-controller="VehiclesAdmin">Lägg till bil</a>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>RegNo</th>
+                    <th>Tillverkare</th>
+                    <th>Modell</th>
+                    <th>Modell År</th>
+                    <th>Antal Km</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var vehicle in Model)
+                {
+                    <tr>
+                        <td>
+                            <a class="edit-icon" asp-action="Edit" asp-controller="VehiclesAdmin"
+                            asp-route-vehicleId=@vehicle.VehicleId><i class="fa-regular fa-pen"></i></a>
+                        </td>
+                        <td>@vehicle.RegistrationNumber</td>
+                        <td>@vehicle.Manufacturer</td>
+                        <td>@vehicle.Model</td>
+                        <td>@vehicle.ModelYear</td>
+                        <td>@vehicle.Mileage</td>
+                        <td><a class="delete-icon" asp-action="Delete" asp-controller="VehiclesAdmin"
+                            asp-route-vehicleId=@vehicle.VehicleId><i class="fa-solid fa-trash-can"></i></a></td>
+                    </tr>
+                }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</section>

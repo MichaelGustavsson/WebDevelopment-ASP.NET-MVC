@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using westcoast_cars.web.Data;
-using westcoast_cars.web.Interfaces;
 using westcoast_cars.web.Models;
 
 namespace westcoast_cars.web.Controllers
@@ -10,19 +9,15 @@ namespace westcoast_cars.web.Controllers
     [Route("vehicles")]
     public class VehiclesController : Controller
     {
-        private readonly IVehicleRepository _vehicleRepo;
-        private readonly IUserRepository _userRepo;
-
-
-        public VehiclesController(IVehicleRepository vehicleRepo, IUserRepository userRepo)
+        private readonly WestcoastCarsContext _context;
+        public VehiclesController(WestcoastCarsContext context)
         {
-            _userRepo = userRepo;
-            _vehicleRepo = vehicleRepo;
+            _context = context;
         }
 
         public async Task<IActionResult> Index()
         {
-            var vehicles = await _vehicleRepo.ListAllAsync();
+            var vehicles = await _context.Vehicles.ToListAsync();
             return View("Index", vehicles);
         }
 

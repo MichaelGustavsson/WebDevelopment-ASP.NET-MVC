@@ -1,0 +1,105 @@
+.text-primary {
+  color: var(--primary-text-color);
+}
+
+.text-secondary {
+  color: var(--secondary-color);
+}
+
+.error-icon {
+  color: var(--error-text);
+  font-size: 4rem;
+}
+
+.shadow {
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
+}
+
+.buttons-container {
+  display: flex;
+  justify-content: left;
+  gap: 10px;
+}
+
+.btn {
+  cursor: pointer;
+  display: inline-block;
+  padding: 0.8rem 2rem;
+  border: none;
+  border-radius: 5px;
+  margin: 0.3rem 0;
+  width: 100%;
+  text-align: center;
+  font-size: 0.8rem;
+}
+
+.btn:hover {
+  opacity: 0.9;
+  font-weight: bold;
+}
+
+.btn-primary,
+.bg-primary {
+  color: var(--light-color);
+  background-color: var(--primary-color);
+}
+
+.btn-secondary,
+.bg-secondary {
+  color: var(--light-color);
+  background-color: var(--secondary-color);
+}
+
+.btn-warning {
+  color: var(--light-color);
+  background: var(--warning-color);
+  border: var(--delete-icon-color) solid 1px;
+}
+
+.btn-dark,
+.bg-dark {
+  color: var(--light-color);
+  background-color: var(--dark-color);
+}
+
+.btn-light,
+.bg-light {
+  color: var(--dark-color);
+  background-color: var(--light-color);
+}
+
+.btn-outline {
+  background: transparent;
+  border: solid 1px var(--dark-color);
+  color: var(--dark-color);
+}
+
+.alert-container {
+  position: absolute;
+  bottom: 20px;
+  right: 0px;
+  z-index: 1;
+}
+
+.alert {
+  margin: 5rem 2rem 1rem 2rem;
+  max-width: 600px;
+  min-width: 500px;
+  text-align: center;
+}
+
+.alert .success {
+  background: #d2e7de;
+  border: #badbcc solid 1px;
+  border-radius: 10px;
+  padding: 1rem;
+  color: #0f5132;
+}
+
+.alert .info {
+  background: #d0e0ff;
+  border: #b6d5fe solid 1px;
+  border-radius: 10px;
+  padding: 1rem;
+  color: #0a4298;
+}
