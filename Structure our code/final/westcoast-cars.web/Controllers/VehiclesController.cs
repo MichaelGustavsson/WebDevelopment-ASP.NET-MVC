@@ -1,0 +1,46 @@
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using westcoast_cars.web.Data;
+using westcoast_cars.web.Interfaces;
+using westcoast_cars.web.Models;
+
+namespace westcoast_cars.web.Controllers
+{
+    //http://localhost:3000/vehicles
+    [Route("vehicles")]
+    public class VehiclesController : Controller
+    {
+        private readonly IVehicleRepository _vehicleRepo;
+        private readonly IUserRepository _userRepo;
+
+
+        public VehiclesController(IVehicleRepository vehicleRepo, IUserRepository userRepo)
+        {
+            _userRepo = userRepo;
+            _vehicleRepo = vehicleRepo;
+        }
+
+        public async Task<IActionResult> Index()
+        {
+            var vehicles = await _vehicleRepo.ListAllAsync();
+            return View("Index", vehicles);
+        }
+
+        // https://localhost:7141/vehicles/details/101
+        [Route("details/{vehicleId}")]
+        public IActionResult Details(Guid vehicleId)
+        {
+            // Vi kommer att gå till backend för att hämta rätt bil med vehicleId...
+            var foundVehicle = new Vehicle
+            {
+                RegistrationNumber = "DEF123",
+                Manufacturer = "Ford",
+                Model = "Mustang MACH-E",
+                ModelYear = "2022",
+                Mileage = 100
+            };
+
+            return View("Details", foundVehicle);
+        }
+    }
+}
