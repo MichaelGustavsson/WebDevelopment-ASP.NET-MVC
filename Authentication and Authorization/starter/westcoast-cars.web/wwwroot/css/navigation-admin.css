@@ -1,0 +1,43 @@
+/* Navigation */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--navbar-primary-color);
+  color: var(--navbar-color);
+  padding: 0.8rem 1.6rem;
+  width: 100%;
+  position: fixed;
+  top: 0px;
+  z-index: 1;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
+}
+
+.navbar a:hover {
+  border-bottom: solid 2px var(--primary-color);
+}
+
+.navbar ul {
+  display: flex;
+  gap: 20px;
+}
+
+.navbar ul > li {
+  list-style: none;
+}
+
+.navbar ul > li > a {
+  text-decoration: none;
+  color: var(--navbar-color);
+}
+.navbar .logo {
+  font-weight: 400;
+}
+
+.navbar .logo a {
+  color: var(--light-color);
+}
+
+.navbar-logo-primary-text {
+  color: var(--navbar-secondary-color);
+}

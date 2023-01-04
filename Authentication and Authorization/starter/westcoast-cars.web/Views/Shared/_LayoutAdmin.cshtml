@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/55174c58a9.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="~/css/styles.css">
+    <link rel="stylesheet" href="~/css/colors-admin.css">
+    <link rel="stylesheet" href="~/css/navigation-admin.css">
+    <link rel="stylesheet" href="~/css/tables.css">
+    <link rel="stylesheet" href="~/css/utilities.css">
+    <title>Westcoast Cars</title>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar">
+            <h1 class="logo"><a asp-action="Index" asp-controller="Home"><span
+                        class="navbar-logo-primary-text>Westcoast"><i class="fa-solid fa-car"></i> Westcoast</span>
+                    Cars</a></h1>
+            <ul>                
+                <li><a asp-action="Index" asp-controller="VehiclesAdmin">Bilar i lager</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        @RenderBody()
+    </main>
+</body>
+
+</html>
