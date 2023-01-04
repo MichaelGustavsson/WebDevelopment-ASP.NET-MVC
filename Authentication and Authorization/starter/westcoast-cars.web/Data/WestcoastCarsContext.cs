@@ -5,7 +5,7 @@ namespace westcoast_cars.web.Data;
 
 public class WestcoastCarsContext : DbContext
 {
-    public DbSet<Vehicle> Vehicles => Set<Vehicle>();
+    public DbSet<VehicleModel> Vehicles => Set<VehicleModel>();
     public WestcoastCarsContext(DbContextOptions options) : base(options)
     {
     }

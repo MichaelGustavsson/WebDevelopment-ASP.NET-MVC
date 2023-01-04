@@ -1,6 +1,6 @@
 namespace westcoast_cars.web.Models
 {
-    public class Vehicle
+    public class VehicleModel
     {
         public int VehicleId { get; set; }
         public string VinNumber { get; set; } = "";

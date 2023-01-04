@@ -5,12 +5,12 @@ using westcoast_cars.web.Models;
 
 namespace westcoast_cars.web.Repository;
 
-public class VehicleRepository : Repository<Vehicle>, IVehicleRepository
+public class VehicleRepository : Repository<VehicleModel>, IVehicleRepository
 {
     // private readonly WestcoastCarsContext _context;
     public VehicleRepository(WestcoastCarsContext context) : base(context) { }
 
-    public async Task<Vehicle?> FindByRegistrationNumberAsync(string regNo)
+    public async Task<VehicleModel?> FindByRegistrationNumberAsync(string regNo)
     {
         return await _context.Vehicles.SingleOrDefaultAsync(c => c.RegistrationNumber.Trim().ToLower() == regNo.Trim().ToLower());
     }

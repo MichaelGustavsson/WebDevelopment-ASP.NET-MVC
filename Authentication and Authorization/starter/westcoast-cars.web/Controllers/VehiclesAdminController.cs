@@ -75,7 +75,7 @@ public class VehiclesAdminController : Controller
                 return View("_Error", error);
             }
 
-            var vehicleToAdd = new Vehicle
+            var vehicleToAdd = new VehicleModel
             {
                 RegistrationNumber = vehicle.RegistrationNumber,
                 Manufacturer = vehicle.Manufacturer,
