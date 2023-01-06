@@ -22,6 +22,12 @@ namespace westcoastcars.web.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("Description")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ImageUrl")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Manufacturer")
                         .IsRequired()
                         .HasColumnType("TEXT");
@@ -40,6 +46,9 @@ namespace westcoastcars.web.Data.Migrations
                     b.Property<string>("RegistrationNumber")
                         .IsRequired()
                         .HasColumnType("TEXT");
+
+                    b.Property<int>("Value")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("VinNumber")
                         .IsRequired()

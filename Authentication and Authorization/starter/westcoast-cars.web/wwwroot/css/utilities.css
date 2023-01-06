@@ -1,3 +1,37 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  border: var(--primary-color) solid 1px;
+  background-color: var(--background-color);
+  border-radius: 5px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+}
+
+.card-header {
+  display: flex;
+  justify-content: center;
+  font-size: 600;
+  color: var(--primary-text-color);
+  background: var(--navbar-primary-color);
+  padding: 0.5rem;
+}
+
+.card-body {
+  width: 100%;
+}
+
+.card-footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.card-body,
+.card-footer {
+  padding: 0.3rem 1rem;
+}
+
 .text-primary {
   color: var(--primary-text-color);
 }
@@ -13,6 +47,12 @@
 
 .error {
   color: var(--error-text);
+}
+
+.highlighted-link a {
+  font-weight: 600;
+  color: var(--title-color);
+  text-decoration: underline;
 }
 
 .shadow {
@@ -35,6 +75,8 @@
   width: 100%;
   text-align: center;
   font-size: 0.8rem;
+  outline: none !important;
+  text-decoration: none;
 }
 
 .btn:hover {
@@ -72,10 +114,17 @@
   background-color: var(--light-color);
 }
 
-.btn-outline {
+.btn-outline-dark {
   background: transparent;
   border: solid 1px var(--dark-color);
   color: var(--dark-color);
+}
+
+.btn-outline-light {
+  background: transparent;
+  border: solid 1px var(--light-color);
+  color: var(--dark-light);
+  border-radius: 40px;
 }
 
 .alert-container {
@@ -86,24 +135,28 @@
 }
 
 .alert {
-  margin: 5rem 2rem 1rem 2rem;
   max-width: 600px;
-  min-width: 500px;
+  min-width: 300px;
   text-align: center;
+  border-radius: 10px;
+  margin: 0.5rem 0.6rem;
+  padding: 0.2rem 0.5rem;
 }
 
-.alert .success {
+.alert-success {
   background: #d2e7de;
-  border: #badbcc solid 1px;
-  border-radius: 10px;
-  padding: 1rem;
+  border: #0f5132 solid 1px;
   color: #0f5132;
 }
 
-.alert .info {
+.alert-info {
   background: #d0e0ff;
   border: #b6d5fe solid 1px;
-  border-radius: 10px;
-  padding: 1rem;
   color: #0a4298;
+}
+
+.alert-error {
+  border: var(--error-text) solid 1px;
+  background: var(--error-background);
+  color: var(--light-color);
 }

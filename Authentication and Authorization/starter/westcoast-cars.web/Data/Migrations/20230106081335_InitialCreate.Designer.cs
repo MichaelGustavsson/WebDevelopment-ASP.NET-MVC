@@ -10,7 +10,7 @@ using westcoast_cars.web.Data;
 namespace westcoastcars.web.Data.Migrations
 {
     [DbContext(typeof(WestcoastCarsContext))]
-    [Migration("20230104205755_InitialCreate")]
+    [Migration("20230106081335_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -24,6 +24,12 @@ namespace westcoastcars.web.Data.Migrations
                     b.Property<int>("VehicleId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ImageUrl")
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Manufacturer")
                         .IsRequired()
@@ -43,6 +49,9 @@ namespace westcoastcars.web.Data.Migrations
                     b.Property<string>("RegistrationNumber")
                         .IsRequired()
                         .HasColumnType("TEXT");
+
+                    b.Property<int>("Value")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("VinNumber")
                         .IsRequired()

@@ -26,7 +26,7 @@ namespace westcoast_cars.web.Controllers
         public IActionResult Details(Guid vehicleId)
         {
             // Vi kommer att gå till backend för att hämta rätt bil med vehicleId...
-            var foundVehicle = new VehicleModel
+            var foundVehicle = new Vehicle
             {
                 RegistrationNumber = "DEF123",
                 Manufacturer = "Ford",

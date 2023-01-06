@@ -7,10 +7,13 @@
 }
 
 body {
+  position: relative;
   font-family: 'Lato', sans-serif;
   background: var(--primary-background-color);
   color: var(--dark-color);
   line-height: 1.6;
+  height: 100vh;
+  width: 100vw;
 }
 
 h1,
@@ -46,7 +49,7 @@ form {
   flex-direction: column;
   width: 600px;
   max-width: 600px;
-  background: var(--light-color);
+  /* background: var(--light-color); */
   padding: 1rem;
   border-radius: 5px;
 }
@@ -60,7 +63,8 @@ input {
 }
 
 input[type='text'],
-input[type='number'] {
+input[type='number'],
+input[type='password'] {
   width: 100%;
   border-radius: 5px;
   border: 1px solid var(--primary-border-color);
@@ -79,6 +83,15 @@ input[type='number'] {
   flex-direction: column;
   align-items: center;
   padding: 5rem 2rem;
+}
+
+.page-centered {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .page-title {

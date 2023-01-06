@@ -18,7 +18,7 @@ public static class SeedData
         // Läsa in json datat...
         var json = System.IO.File.ReadAllText("Data/json/vehicles.json");
         // Konvertera json objekten till en lista av Vehicle objekt...
-        var vehicles = JsonSerializer.Deserialize<List<VehicleModel>>(json, options);
+        var vehicles = JsonSerializer.Deserialize<List<Vehicle>>(json, options);
 
         if (vehicles is not null && vehicles.Count > 0)
         {
