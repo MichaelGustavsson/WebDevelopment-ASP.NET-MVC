@@ -58,14 +58,14 @@ form label {
   color: var(--primary-color);
 }
 
-input {
-  padding: 0.6rem 0.2rem;
-}
-
 input[type='text'],
+input[type='email'],
 input[type='number'],
-input[type='password'] {
+input[type='password'],
+select {
+  height: 2.5rem;
   width: 100%;
+  padding: 0.6rem 0.4rem;
   border-radius: 5px;
   border: 1px solid var(--primary-border-color);
   outline: none !important;
@@ -147,4 +147,8 @@ input[type='password'] {
 
 .cars img:hover {
   opacity: 0.7;
+}
+
+.image-thumbnail {
+  width: 200px;
 }

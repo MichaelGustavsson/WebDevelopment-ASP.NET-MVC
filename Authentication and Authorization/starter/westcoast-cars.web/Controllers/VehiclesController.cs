@@ -5,7 +5,6 @@ using westcoast_cars.web.Models;
 
 namespace westcoast_cars.web.Controllers
 {
-    //http://localhost:3000/vehicles
     [Route("vehicles")]
     public class VehiclesController : Controller
     {
@@ -21,7 +20,6 @@ namespace westcoast_cars.web.Controllers
             return View("Index", vehicles);
         }
 
-        // https://localhost:7141/vehicles/details/101
         [Route("details/{vehicleId}")]
         public IActionResult Details(Guid vehicleId)
         {
