@@ -1,0 +1,17 @@
+@section styles{
+<link rel="stylesheet" href="~/css/vehicle-detail-page.css">
+}
+
+<article class="vehicle-detail">
+    <h1 class="page-title">@Model!.Manufacturer @Model.Model</h1>
+    <img src="~/img/@Model.ImageUrl" alt="@Model.Manufacturer">
+    <section class="vehicle-description">
+        <div>Årsmodell @Model.ModelYear</div>
+        <div>Antal km @Model.Mileage</div>
+        <h2>Pris @Model.Value</h2>
+        <hr>
+        <h4>Beskrivning</h4>
+        <p>@Model.Description</p>
+        <a class="go-back" asp-action="Index"><i class="fa-solid fa-left-long"></i>Tillbaka till våra bilar</a>
+    </section>
+</article>

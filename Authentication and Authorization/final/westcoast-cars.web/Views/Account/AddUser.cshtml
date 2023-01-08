@@ -1,0 +1,37 @@
+@model westcoast_cars.web.ViewModels.Account.Admin.AddUserViewModel
+@{
+    ViewBag.PageTitle = "Lägg till användare";
+}
+
+<article class="page-centered">
+    <form asp-action="AddUser">
+        <div class="card">
+            <h1 class="card-header">Lägg till ny användare</h1>
+            <div class="card-body">
+                <div class="form-control">
+                    <label asp-for="Email"></label>
+                    <input asp-for="Email">
+                    <span class="error" asp-validation-for="Email"></span>
+                </div>
+                <div class="form-control">
+                    <label asp-for="Password"></label>
+                    <input asp-for="Password">
+                    <span class="error" asp-validation-for="Password"></span>
+                </div>
+                <div class="form-control">
+                    <label asp-for="Role.RoleName"></label>
+                    <select asp-for="Role.RoleName" asp-items="Model.Role.Roles"></select>
+                    <span class="error" asp-validation-for="Password"></span>
+                </div>
+            </div>
+            <div class="card-footer">
+                <button type="Submit" class="btn btn-primary">
+                    <i class="fa-light fa-floppy-disk"></i> Spara</button>
+                <a asp-action="index" asp-controller="Home" class="btn btn-warning"><i
+                        class="fa-solid fa-arrow-left"></i> Avbryt</a>
+
+            </div>
+            <div class="error-message error" asp-validation-summary="All"></div>
+        </div>
+    </form>
+</article>

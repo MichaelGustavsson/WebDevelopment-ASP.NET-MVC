@@ -1,0 +1,154 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;1,100;1,300;1,400;1,700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  position: relative;
+  font-family: 'Lato', sans-serif;
+  background: var(--primary-background-color);
+  color: var(--dark-color);
+  line-height: 1.6;
+  height: 100vh;
+  width: 100vw;
+}
+
+h1,
+h2 {
+  font-weight: 300;
+  line-height: 1.2;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: var(--dark-color);
+}
+
+p {
+  margin: 1rem 0;
+}
+
+img {
+  width: 100%;
+}
+
+footer {
+  padding: 1.5rem;
+  text-align: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  width: 600px;
+  max-width: 600px;
+  /* background: var(--light-color); */
+  padding: 1rem;
+  border-radius: 5px;
+}
+
+form label {
+  color: var(--primary-color);
+}
+
+input[type='text'],
+input[type='email'],
+input[type='number'],
+input[type='password'],
+select {
+  height: 2.5rem;
+  width: 100%;
+  padding: 0.6rem 0.4rem;
+  border-radius: 5px;
+  border: 1px solid var(--primary-border-color);
+  outline: none !important;
+}
+
+.form-control {
+  margin: 0.2rem 0;
+}
+.form-control label {
+  display: block;
+}
+
+.page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5rem 2rem;
+}
+
+.page-centered {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.page-title {
+  color: var(--title-color);
+  font-weight: 400;
+  font-size: 2rem;
+  padding: 2rem 0 3rem 0;
+}
+
+.error-page-title {
+  color: var(--error-text);
+  font-weight: 400;
+  font-size: 2rem;
+  padding: 2rem 0 3rem 0;
+}
+
+.text-primary {
+  color: var(--primary-text-color);
+}
+
+.text-secondary {
+  color: var(--light-text-color);
+}
+
+.go-back {
+  font-size: 1.2rem;
+  text-decoration: none;
+  color: var(--primary-text-color);
+  margin: 2rem 0;
+}
+
+/* Icons */
+.icons {
+  padding: 2rem;
+}
+
+.icons h3 {
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.icons i {
+  background-color: var(--primary-color);
+  color: var(--light-color);
+  padding: 1rem;
+  border-radius: 50%;
+  margin-bottom: 1rem;
+}
+
+.content {
+  margin-bottom: 3rem;
+}
+
+.cars img:hover {
+  opacity: 0.7;
+}
+
+.image-thumbnail {
+  width: 200px;
+}

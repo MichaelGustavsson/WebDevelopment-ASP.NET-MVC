@@ -1,0 +1,38 @@
+@model IList<westcoast_cars.web.Models.VehicleModel>
+
+@section styles{
+<link rel="stylesheet" href="~/css/gallery-page.css" />
+}
+
+@{
+    ViewBag.PageTitle = "Våra bilar";
+}
+
+<article class="page">
+    <h1 class="page-title">Våra bilar i lager</h1>
+    <br>
+    <section class="gallery-wrapper">
+        @foreach (var vehicle in Model)
+        {
+            <div class="gallery-card">
+                <a asp-action="details" asp-route-vehicleId=@vehicle.VehicleId>@vehicle.Manufacturer - @vehicle.Model -
+                    @vehicle.ModelYear</a>
+
+                <a href="#">
+                    <img src="~/img/@vehicle.ImageUrl" alt="@vehicle.Model" vehicleId="@vehicle.VehicleId">
+                </a>
+            </div>
+        }
+    </section>
+</article>
+
+@* Modal dialog for displaying the vehicle in a larger window *@
+<div class="modal hidden">
+    <button class="close-modal">&times;</button>
+    <div class="modal-container"></div>
+</div>
+<div class="overlay hidden"></div>
+
+@section scripts{
+<script src="~/js/gallery-page.js"></script>
+}

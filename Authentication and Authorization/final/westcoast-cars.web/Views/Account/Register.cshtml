@@ -1,0 +1,37 @@
+@model westcoast_cars.web.ViewModels.Account.RegisterUserViewModel
+@{
+    ViewBag.PageTitle = "Registrera konto";
+}
+
+<article class="page-centered">
+    <form asp-action="register">
+        <div class="card">
+            <h1 class="card-header">Registrera dig!</h1>
+            <div class="card-body">
+                <div class="form-control">
+                    <label asp-for="Email"></label>
+                    <input asp-for="Email">
+                    <span class="error" asp-validation-for="Email"></span>
+                </div>
+                <div class="form-control">
+                    <label asp-for="Password"></label>
+                    <input asp-for="Password">
+                    <span class="error" asp-validation-for="Password"></span>
+                </div>
+                <div class="form-control">
+                    <label asp-for="ConfirmPassword"></label>
+                    <input asp-for="ConfirmPassword">
+                    <span class="error" asp-validation-for="ConfirmPassword"></span>
+                </div>
+            </div>
+            <div class="card-footer">
+                <button type="Submit" class="btn btn-primary">
+                    Registrera</button>
+                <a asp-action="index" asp-controller="Home" class="btn btn-warning"><i
+                        class="fa-solid fa-arrow-left"></i> Avbryt</a>
+
+            </div>
+            <div class="error-message error" asp-validation-summary="All"></div>
+        </div>
+    </form>
+</article>

@@ -1,0 +1,28 @@
+@model westcoast_cars.web.ViewModels.Account.Admin.RoleViewModel
+
+@{
+    ViewBag.PageTitle = "Lägg till roll";
+}
+
+<article class="page-centered">
+    <form asp-action="CreateRole">
+        <div class="card">
+            <h1 class="card-header">Skapa en ny roll</h1>
+            <div class="card-body">
+                <div class="form-control">
+                    <label asp-for="RoleName"></label>
+                    <input asp-for="RoleName">
+                    <span class="error" asp-validation-for="RoleName"></span>
+                </div>
+            </div>
+            <div class="card-footer">
+                <button type="Submit" class="btn btn-primary">
+                    <i class="fa-light fa-floppy-disk"></i> Spara</button>
+                <a asp-action="index" asp-controller="Home" class="btn btn-warning"><i
+                        class="fa-solid fa-arrow-left"></i> Avbryt</a>
+
+            </div>
+            <div asp-validation-summary="All"></div>
+        </div>
+    </form>
+</article>

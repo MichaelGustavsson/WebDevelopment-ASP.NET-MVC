@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://kit.fontawesome.com/55174c58a9.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="~/css/colors.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/utilities.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/navigation.css" asp-append-version="true" />
+    @RenderSection("styles", false)
+    <link rel="stylesheet" href="~/css/styles.css">
+    <link rel="stylesheet" href="~/css/utilities.css">
+    <title>@ViewBag.PageTitle - Westcoast Cars</title>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar">
+            <h1 class="logo"><span class="text-primary"><i class="fa-solid fa-car"></i>Westcoast </span>Cars</h1>
+            <ul>
+                <li><a asp-action="Index" asp-controller="Home">Start</a></li>
+                <li><a asp-action="Index" asp-controller="Vehicles">Vehicles</a></li>
+                <li><a asp-action="Index" asp-controller="Services">Boka service</a></li>
+                @if (User.Identity is null || User.Identity.IsAuthenticated == false)
+                {
+                    <li><a class="btn btn-outline-light" asp-action="Index" asp-controller="VehiclesAdmin">Logga In</a></li>
+                }
+                else
+                {
+                    <li><a class="btn btn-outline-light" asp-action="logout" asp-controller="Account">Logga Ut</a></li>
+                }
+            </ul>
+        </nav>
+    </header>
+    <main>
+        @RenderSection("WeeklyOffer",false)
+        @RenderBody()
+    </main>
+    @RenderSection("scripts", false)
+</body>
+
+</html>

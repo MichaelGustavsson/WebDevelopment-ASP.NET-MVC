@@ -1,0 +1,27 @@
+﻿@{
+    ViewBag.PageTitle = "Välkommen till";
+}
+
+@section styles{
+<link rel="stylesheet" href="~/css/landing-page.css" />
+}
+
+@section WeeklyOffer{
+<section class="alert-container">
+    @await Html.PartialAsync("_WeeklyOffer")
+</section>
+}
+
+<div class="landing">
+    <div class="content">
+        <h1>Välkommen till Westcoast Cars</h1>
+        <h2>Vi tillhandahåller begnade bilar</h2>
+        <p>Med högsta kvalite all ifrån sportbilar till<br>
+            familjebilar</p>
+
+    </div>
+</div>
+<h2>@ViewBag.Message</h2>
+<br>
+
+@Html.ActionLink("Se våra bilar","Index", "Vehicles")

@@ -1,0 +1,40 @@
+@model westcoast_cars.web.ViewModels.VehiclePostViewModel
+
+<section class="page">
+    <h1 class="page-title">Lägg till bil</h1>
+    <form class="shadow" asp-action="create" asp-controller="VehiclesAdmin" method="post">
+        <div class="form-control">
+            <label asp-for="RegistrationNumber"></label>
+            <input asp-for="RegistrationNumber" />
+            <span class="error" asp-validation-for="RegistrationNumber"></span>
+        </div>
+        <div class="form-control">
+            <label asp-for="Manufacturer"></label>
+            <input asp-for="Manufacturer" />
+            <span class="error" asp-validation-for="Manufacturer"></span>
+        </div>
+        <div class="form-control">
+            <label asp-for="Model"></label>
+            <input asp-for="Model" />
+            <span class="error" asp-validation-for="Model"></span>
+        </div>
+        <div class="form-control">
+            <label asp-for="ModelYear"></label>
+            <input asp-for="ModelYear" />
+            <span class="error" asp-validation-for="ModelYear"></span>
+        </div>
+        <div class="form-control">
+            <label asp-for="Mileage"></label>
+            <input asp-for="Mileage" />
+            <span class="error" asp-validation-for="Mileage"></span>
+        </div>
+        <div class="form-control">
+            <div class="buttons-container">
+                <button type="Submit" class="btn btn-primary"><i class="fa-sharp fa-solid fa-floppy-disk"></i>
+                    Spara</button>
+                <a asp-action="index" asp-controller="VehiclesAdmin" class="btn btn-warning"><i
+                        class="fa-solid fa-arrow-left"></i> Avbryt</a>
+            </div>
+        </div>
+    </form>
+</section>
