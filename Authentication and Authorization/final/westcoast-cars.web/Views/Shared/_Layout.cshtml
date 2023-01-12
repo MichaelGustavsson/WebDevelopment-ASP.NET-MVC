@@ -24,7 +24,7 @@
                 <li><a asp-action="Index" asp-controller="Services">Boka service</a></li>
                 @if (User.Identity is null || User.Identity.IsAuthenticated == false)
                 {
-                    <li><a class="btn btn-outline-light" asp-action="Index" asp-controller="VehiclesAdmin">Logga In</a></li>
+                    <li><a class="btn btn-outline-light" asp-action="login" asp-controller="Account">Logga In</a></li>
                 }
                 else
                 {

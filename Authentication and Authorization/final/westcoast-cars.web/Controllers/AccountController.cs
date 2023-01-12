@@ -1,4 +1,3 @@
-using System.Web;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -27,6 +26,8 @@ public class AccountController : Controller
     public IActionResult Login([FromQuery] string returnUrl)
     {
         var loginModel = new LoginViewModel();
+        if (returnUrl is null) returnUrl = "/vehicles";
+
         ViewBag.returnUrl = returnUrl;
         return View("Login", loginModel);
     }
@@ -34,6 +35,10 @@ public class AccountController : Controller
     [HttpPost("login")]
     public async Task<IActionResult> Login(LoginViewModel model, string returnUrl)
     {
+        if (returnUrl is null) returnUrl = "/vehicles";
+
+        ViewBag.returnUrl = returnUrl;
+
         if (!ModelState.IsValid) return View(model);
 
         var user = new IdentityUser
